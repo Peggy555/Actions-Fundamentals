@@ -22,4 +22,26 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      
+  NAME: My Composite Action
+  description: This action runs multiple steps
+  runs:
+    using: "composite"
+    steps:
+      - run echo "Step 1"
+      - run echo "Step 2"
+
+    jobs:
+      example:
+        runs-on: ubuntu-latest
+
+
+name: Modular Workflow
+on:
+  workflow_call:
+    inputs:
+      my-input:
+        required: true
+        type: string
+    outputs:
+      my-output:
+        description: 
